@@ -14,7 +14,7 @@ import kotlinx.coroutines.flow.flowOn
 abstract class FlowUseCase<R, in P>(val coroutineDispatcher: CoroutineDispatcher) {
 
     operator fun invoke(params: P): Flow<AResult<R>> = execute(params)
-        .catch { e -> emit(AResult.Error(Exception(e))) }
+        .catch { e -> emit(AResult.failure(Exception(e))) }
         .flowOn(coroutineDispatcher)
 
     protected abstract fun execute(params: P): Flow<AResult<R>>

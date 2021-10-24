@@ -53,10 +53,10 @@ class GetLongevityFactors @Inject constructor(
                         "https://www.longevityscientificresort.com/images/resort/img-4.jpg"
                     )
                 )
-                emit(AResult.Success(data))// Api call simulation
+                emit(AResult.success(data))// Api call simulation
 //                repository.getHomeLongevityFactories()
             } catch (e: Exception) {
-                emit(AResult.Error(e))
+                emit(AResult.failure(e))
             }
         }
 

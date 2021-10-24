@@ -2,7 +2,6 @@ package com.app.domain.feature.home.interactor
 
 import com.app.domain.base.interactor.UseCase
 import com.app.domain.base.result.AResult
-import com.app.domain.feature.home.model.HomeSlider
 import com.app.domain.feature.home.model.Location
 import com.app.domain.feature.home.repository.HomeRepository
 import kotlinx.coroutines.flow.Flow
@@ -36,10 +35,10 @@ class GetOurLocations @Inject constructor(
                         "https://www.longevityscientificresort.com/images/resort/img-4.jpg"
                     )
                 )
-                emit(AResult.Success(data))
+                emit(AResult.success(data))
 //                repository.getLocations()
             } catch (e: Exception) {
-                emit(AResult.Error(e))
+                emit(AResult.failure(e))
             }
         }
 

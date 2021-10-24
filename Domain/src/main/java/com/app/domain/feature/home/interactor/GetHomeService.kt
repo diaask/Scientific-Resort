@@ -21,13 +21,16 @@ class GetHomeService @Inject constructor(
                     Service(3, "Fitness & spa. Standard resort activities"),
                     Service(4, "Longevity clinical trials for selected clients"),
                     Service(5, "Tracking 30 days before stay & lifetime after stay"),
-                    Service(6, "Longevity treatments conducted by leading scientists Longevity treatments conducted by leading scientists"),
+                    Service(
+                        6,
+                        "Longevity treatments conducted by leading scientists Longevity treatments conducted by leading scientists"
+                    ),
                     Service(7, "Nutrition plan designed by leading longevity scientists")
                 )
-                emit(AResult.Success(data))
+                emit(AResult.success(data))
 //                repository.get_root_ide_package_.com.app.domain.feature.home.model.Service()
             } catch (e: Exception) {
-                emit(AResult.Error(e))
+                emit(AResult.failure(e))
             }
         }
 
