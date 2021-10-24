@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import com.app.longevityresort.R
 import com.app.longevityresort.base.model.FactorsView
 import com.app.longevityresort.ui.theme.Blue
+import com.app.longevityresort.ui.theme.MainTitleText
 
 @ExperimentalFoundationApi
 @Composable
@@ -31,11 +32,7 @@ fun LongevityFactorsSection(factors: List<FactorsView>) {
             .fillMaxWidth()
             .wrapContentSize(Alignment.Center)
     ) {
-        Text(
-            modifier = Modifier.padding(start = 16.dp, top = 16.dp),
-            text = stringResource(R.string.longevity_factors),
-            style = MaterialTheme.typography.h5
-        )
+        MainTitleText(modifier = Modifier.padding(start = 16.dp, top = 16.dp), text = stringResource(R.string.longevity_factors))
         LazyRow(
             modifier = Modifier,
             contentPadding = PaddingValues(horizontal = 16.dp),

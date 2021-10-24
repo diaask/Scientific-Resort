@@ -49,7 +49,6 @@ class HomeViewModel @Inject constructor(
         homeSlider()
         getLongevityFactors()
         getServices()
-        getLocaions()
     }
 
     private fun homeSlider() {
@@ -59,9 +58,7 @@ class HomeViewModel @Inject constructor(
                 getHomeSlider(Unit)
                     .onStart { loading.value = true }
                     .onCompletion { loading.value = false }
-                    .catch { error ->
-                        Log.e("Error", error.stackTrace.toString())
-                    }.collect {
+                    .collect {
                         it.data?.let { apiList ->
                             homeSlider.value = apiList.map { homeSliderViewMapper.mapToView(it) }
                         }
@@ -114,7 +111,7 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    private fun getLocaions() {
+    fun getLocations() {
         viewModelScope.launch {
             try {
                 loading.value = true

@@ -17,6 +17,7 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 @ExperimentalPagerApi
 @Composable
 fun LocationsScreen(viewModel: HomeViewModel) {
+    viewModel.getLocations()
     Scaffold(
         topBar = {
             TopAppBar(

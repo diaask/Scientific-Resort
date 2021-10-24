@@ -2,12 +2,14 @@ package com.app.data.features.home
 
 import com.app.data.features.home.mapper.FactorMapper
 import com.app.data.features.home.mapper.HomeSliderMapper
+import com.app.data.features.home.mapper.LocationsMapper
 import com.app.data.features.home.mapper.ServiceMapper
 import com.app.data.features.home.store.HomeRemoteDataStore
 import com.app.domain.base.result.AResult
 import com.app.domain.base.result.data
 import com.app.domain.feature.home.model.Factors
 import com.app.domain.feature.home.model.HomeSlider
+import com.app.domain.feature.home.model.Location
 import com.app.domain.feature.home.model.Service
 import com.app.domain.feature.home.repository.HomeRepository
 import kotlinx.coroutines.flow.Flow
@@ -18,6 +20,7 @@ class HomeDataRepository @Inject constructor(
     private val sliderMapper: HomeSliderMapper,
     private val factorMapper: FactorMapper,
     private val serviceMapper: ServiceMapper,
+    private val locationsMapper: LocationsMapper,
     private val factory: HomeRemoteDataStore
 ) : HomeRepository {
 
@@ -43,7 +46,13 @@ class HomeDataRepository @Inject constructor(
                 serviceMapper.mapFromEntity(factors)
             })
         }
-
     }
 
+    override suspend fun getlocations(): Flow<AResult<List<Location>>> {
+        return factory.getLocations().map {
+            AResult.success(it.data!!.map { location ->
+                locationsMapper.mapFromEntity(location)
+            })
+        }
+    }
 }

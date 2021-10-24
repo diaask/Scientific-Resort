@@ -1,9 +1,7 @@
 package com.app.data.features.home.mapper
 
 import com.app.data.base.EntityMapper
-import com.app.data.features.home.model.FactorsEntity
 import com.app.data.features.home.model.ServiceEntity
-import com.app.domain.feature.home.model.Factors
 import com.app.domain.feature.home.model.Service
 import javax.inject.Inject
 

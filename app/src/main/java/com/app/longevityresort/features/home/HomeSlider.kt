@@ -22,6 +22,8 @@ import com.app.longevityresort.R
 import com.app.longevityresort.base.model.HomeSliderView
 import com.app.longevityresort.extensions.loadPicture
 import com.app.longevityresort.ui.theme.Blue
+import com.app.longevityresort.ui.theme.MainTitleText
+import com.app.longevityresort.ui.theme.SubTitleText
 import com.google.accompanist.pager.*
 
 @ExperimentalPagerApi
@@ -80,8 +82,8 @@ fun SliderPage(sliderView: HomeSliderView) {
                     .align(Alignment.BottomStart)
                     .padding(16.dp)
             ) {
-                Text(text = sliderView.title,color = Color.White,style = MaterialTheme.typography.h5)
-                Text(text = sliderView.subtitle,color = Color.White,style = MaterialTheme.typography.body1)
+                MainTitleText(text = sliderView.title)
+                SubTitleText(text = sliderView.subtitle)
             }
         }
     }

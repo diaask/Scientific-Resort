@@ -3,6 +3,7 @@ package com.app.remote.features.home.service
 import com.app.domain.base.result.AResult
 import com.app.remote.features.home.model.FactorsModel
 import com.app.remote.features.home.model.HomeSliderModel
+import com.app.remote.features.home.model.LocationModel
 import com.app.remote.features.home.model.ServiceModel
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -80,6 +81,29 @@ class HomeService @Inject constructor(private val firebaseDatabase: FirebaseData
 
         awaitClose {
             firebaseDatabase.reference.child("services")
+                .removeEventListener(postListener)
+        }
+    }
+
+    suspend fun getLocations() = callbackFlow {
+
+        val postListener = object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+                this@callbackFlow.trySend(AResult.failure(error.toException()))
+            }
+
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val items = dataSnapshot.children.map { ds ->
+                    ds.getValue(LocationModel::class.java)
+                }
+                this@callbackFlow.trySend(AResult.success(items.filterNotNull()))
+            }
+        }
+        firebaseDatabase.reference.child("locations")
+            .addValueEventListener(postListener)
+
+        awaitClose {
+            firebaseDatabase.reference.child("locations")
                 .removeEventListener(postListener)
         }
     }
