@@ -1,33 +1,41 @@
-package com.app.data.features
+package com.app.data.features.home
 
+import com.app.data.features.home.mapper.FactorMapper
 import com.app.data.features.home.mapper.HomeSliderMapper
 import com.app.data.features.home.store.HomeRemoteDataStore
 import com.app.domain.base.result.AResult
 import com.app.domain.base.result.data
+import com.app.domain.feature.home.model.Factors
 import com.app.domain.feature.home.model.HomeSlider
+import com.app.domain.feature.home.model.Service
 import com.app.domain.feature.home.repository.HomeRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class HomeDataRepository @Inject constructor(
-    private val mapper: HomeSliderMapper,
+    private val sliderMapper: HomeSliderMapper,
+    private val factorMapper: FactorMapper,
     private val factory: HomeRemoteDataStore
 ) : HomeRepository {
 
     override suspend fun getHomeSlider(): Flow<AResult<List<HomeSlider>>> {
         return factory.getHomeSlider().map {
             AResult.success(it.data!!.map { slider ->
-                mapper.mapFromEntity(slider)
+                sliderMapper.mapFromEntity(slider)
             })
         }
     }
 
-    override suspend fun getHomeServices(): List<HomeSlider> {
+    override suspend fun getHomeServices(): Flow<AResult<List<Service>>> {
         TODO("Not yet implemented")
     }
 
-    override suspend fun getHomeLongevityFactories(): List<HomeSlider> {
-        TODO("Not yet implemented")
+    override suspend fun getHomeLongevityFactories(): Flow<AResult<List<Factors>>> {
+        return factory.getFactors().map {
+            AResult.success(it.data!!.map { factors ->
+                factorMapper.mapFromEntity(factors)
+            })
+        }
     }
 }

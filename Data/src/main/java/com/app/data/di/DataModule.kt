@@ -1,6 +1,6 @@
 package com.app.data.di
 
-import com.app.data.features.HomeDataRepository
+import com.app.data.features.home.HomeDataRepository
 import com.app.domain.feature.home.repository.HomeRepository
 import dagger.Binds
 import dagger.Module
