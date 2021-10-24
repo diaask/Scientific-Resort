@@ -2,6 +2,7 @@ package com.app.data.features.home
 
 import com.app.data.features.home.mapper.FactorMapper
 import com.app.data.features.home.mapper.HomeSliderMapper
+import com.app.data.features.home.mapper.ServiceMapper
 import com.app.data.features.home.store.HomeRemoteDataStore
 import com.app.domain.base.result.AResult
 import com.app.domain.base.result.data
@@ -16,6 +17,7 @@ import javax.inject.Inject
 class HomeDataRepository @Inject constructor(
     private val sliderMapper: HomeSliderMapper,
     private val factorMapper: FactorMapper,
+    private val serviceMapper: ServiceMapper,
     private val factory: HomeRemoteDataStore
 ) : HomeRepository {
 
@@ -27,10 +29,6 @@ class HomeDataRepository @Inject constructor(
         }
     }
 
-    override suspend fun getHomeServices(): Flow<AResult<List<Service>>> {
-        TODO("Not yet implemented")
-    }
-
     override suspend fun getHomeLongevityFactories(): Flow<AResult<List<Factors>>> {
         return factory.getFactors().map {
             AResult.success(it.data!!.map { factors ->
@@ -38,4 +36,14 @@ class HomeDataRepository @Inject constructor(
             })
         }
     }
+
+    override suspend fun getHomeServices(): Flow<AResult<List<Service>>> {
+        return factory.getServices().map {
+            AResult.success(it.data!!.map { factors ->
+                serviceMapper.mapFromEntity(factors)
+            })
+        }
+
+    }
+
 }
