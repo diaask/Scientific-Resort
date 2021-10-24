@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "314556817675",
+    "project_id": "longevity-resort",
+    "storage_bucket": "longevity-resort.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:314556817675:android:93c277887aa556976d020e",
+        "android_client_info": {
+          "package_name": "com.app.longevityresort"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "314556817675-cmi7nm1fb1ao23hks604ec2086r0es2a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBoEgPDs4Pwyzf81qAZWFuBQUjJgL8aojA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "314556817675-cmi7nm1fb1ao23hks604ec2086r0es2a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
