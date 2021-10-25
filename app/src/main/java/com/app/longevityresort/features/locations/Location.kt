@@ -27,6 +27,8 @@ import com.app.longevityresort.features.home.HomeSlider
 import com.app.longevityresort.features.home.HomeTopBar
 import com.app.longevityresort.features.home.LongevityFactorsSection
 import com.app.longevityresort.features.home.OurServicesSection
+import com.app.longevityresort.ui.theme.MainTitleText
+import com.app.longevityresort.ui.theme.SubTitleText
 import com.google.accompanist.pager.ExperimentalPagerApi
 
 @ExperimentalPagerApi
@@ -36,9 +38,6 @@ fun LocationsListView(locations: List<LocationView>) {
     val scrollState = rememberLazyListState()
 
     LazyColumn(state = scrollState, modifier = Modifier,contentPadding = PaddingValues(top = 16.dp,bottom = 70.dp)) {
-//        item {
-//            HomeTopBar()
-//        }
         items(locations.size) { index ->
             ResortLocation(sliderView = locations[index])
         }
@@ -81,8 +80,8 @@ fun ResortLocation(sliderView: LocationView) {
                     .align(Alignment.BottomStart)
                     .padding(16.dp)
             ) {
-                Text(text = sliderView.title, color = Color.White,style = MaterialTheme.typography.h5)
-                Text(text = sliderView.description, color = Color.White,style = MaterialTheme.typography.body1)
+                MainTitleText(text = sliderView.title)
+                SubTitleText(text = sliderView.description)
             }
         }
     }

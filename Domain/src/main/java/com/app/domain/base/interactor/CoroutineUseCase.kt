@@ -19,11 +19,11 @@ abstract class SuspendUseCase<R, in P>(private val coroutineDispatcher: Coroutin
             try {
                 withContext(coroutineDispatcher) {
                     execute(params).let {
-                        AResult.Success(it)
+                        AResult.success(it)
                     }
                 }
             } catch (e: Exception) {
-                AResult.Error(e)
+                AResult.success(e)
             }
         }
     }

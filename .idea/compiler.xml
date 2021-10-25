@@ -3,6 +3,7 @@
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel target="1.8">
       <module name="Longevity_Resort.app" target="11" />
+      <module name="Longevity_Resort.Data" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>
